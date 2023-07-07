@@ -38,10 +38,10 @@ const activename = ref(
             <span class="title">{{ config.title }}</span>
             <span class="select-active">
                 <el-select v-model="activename" size="large">
-                    <el-option v-for="item in reactivePlanItems" :key="item.title">
+                    <el-option v-for="item in reactivePlanItems" :key="item.title" :value="item.title">
                         {{ item.title }}
                         <template v-if="verifyWeekWork(item.timeline)">
-                            <el-tag class="mx-1" type="error" effect="plain" size="small"> 本周无进度 </el-tag>
+                            <el-tag class="mx-1" type="danger" effect="plain" size="small"> 本周无进度 </el-tag>
                         </template>
                     </el-option>
                 </el-select>
@@ -57,7 +57,7 @@ const activename = ref(
                             <el-tag class="mx-1" type="success" effect="plain" size="small"> 低优先级 </el-tag>
                         </template>
                         <template v-if="verifyWeekWork(item.timeline)">
-                            <el-tag class="mx-1" type="error" effect="plain" size="small"> 本周无进度 </el-tag>
+                            <el-tag class="mx-1" type="danger" effect="plain" size="small"> 本周无进度 </el-tag>
                         </template>
                     </h2>
                 </template>
