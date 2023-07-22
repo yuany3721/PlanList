@@ -4,6 +4,15 @@ import config from "../../config";
 import planItems, { OptionItem, TimelineItem } from "./planItems";
 
 const reactivePlanItems: OptionItem[] = reactive(planItems);
+var maxTimelineLength = 0;
+for (let item of planItems) {
+    if (item.timeline.length > maxTimelineLength) {
+        maxTimelineLength = item.timeline.length;
+    }
+}
+const showItemArray: boolean[][] = reactive(
+    Array.from({ length: planItems.length }, () => Array(maxTimelineLength).fill(false))
+);
 
 function verifyWeekWork(timeline: TimelineItem[]) {
     if (timeline.length < 1) return true;
@@ -48,7 +57,7 @@ const activename = ref(
             </span>
         </h1>
 
-        <el-collapse v-model="activename" accordion v-for="item in reactivePlanItems">
+        <el-collapse v-model="activename" accordion v-for="(item, itemIndex) in reactivePlanItems">
             <el-collapse-item :name="item.title">
                 <template #title>
                     <h2>
@@ -65,90 +74,98 @@ const activename = ref(
                 <el-timeline>
                     <el-timeline-item :timestamp="item.timeline[0].timestamp" placement="top">
                         <el-card>
-                            <el-collapse :model-value="['1', '2']">
-                                <el-collapse-item
-                                    title="本周工作"
-                                    name="1"
-                                    v-if="
-                                        item.timeline[0].thisweek != undefined && item.timeline[0].thisweek.length > 0
-                                    "
-                                >
-                                    <ul v-for="t in item.timeline[0].thisweek">
-                                        <li v-html="t"></li>
-                                    </ul>
-                                </el-collapse-item>
-                                <el-collapse-item
-                                    title="下周计划"
-                                    name="2"
-                                    v-if="
-                                        item.timeline[0].nextweek != undefined && item.timeline[0].nextweek.length > 0
-                                    "
-                                >
-                                    <ul v-for="t in item.timeline[0].nextweek">
-                                        <li v-html="t"></li>
-                                    </ul>
-                                </el-collapse-item>
-                            </el-collapse>
-                            <el-collapse :model-value="['1', '2', '3']">
-                                <el-collapse-item
-                                    title="待跟进工作"
-                                    name="2"
-                                    v-if="item.inprogress != undefined && item.inprogress.length > 0"
-                                >
-                                    <ul v-for="t in item.inprogress">
-                                        <li v-html="t"></li>
-                                    </ul>
-                                </el-collapse-item>
-                                <el-collapse-item
-                                    title="当前进度"
-                                    name="1"
-                                    v-if="item.progress != undefined && item.progress.length > 0"
-                                >
-                                    <ul v-for="t in item.progress">
-                                        <li v-html="t"></li>
-                                    </ul>
-                                </el-collapse-item>
-                                <el-collapse-item
-                                    title="低优先级工作"
-                                    name="3"
-                                    v-if="item.lowPrio != undefined && item.lowPrio.length > 0"
-                                >
-                                    <ul v-for="t in item.lowPrio">
-                                        <li v-html="t"></li>
-                                    </ul>
-                                </el-collapse-item>
-                            </el-collapse>
+                            <div
+                                class="item"
+                                v-if="item.timeline[0].thisweek != undefined && item.timeline[0].thisweek.length > 0"
+                            >
+                                <div class="title">本周工作</div>
+                                <ul v-for="t in item.timeline[0].thisweek">
+                                    <li v-html="t"></li>
+                                </ul>
+                            </div>
+                            <div
+                                class="item"
+                                v-if="item.timeline[0].nextweek != undefined && item.timeline[0].nextweek.length > 0"
+                            >
+                                <div class="title">下周计划</div>
+                                <ul v-for="t in item.timeline[0].nextweek">
+                                    <li v-html="t"></li>
+                                </ul>
+                            </div>
+                            <div class="item" v-if="item.inprogress != undefined && item.inprogress.length > 0">
+                                <div class="title">待跟进工作</div>
+                                <ul v-for="t in item.inprogress">
+                                    <li v-html="t"></li>
+                                </ul>
+                            </div>
+                            <div class="item" v-if="item.progress != undefined && item.progress.length > 0">
+                                <div class="title">当前进度</div>
+                                <ul v-for="t in item.progress">
+                                    <li>
+                                        <span v-html="t.milestone"></span>
+                                        <el-tag
+                                            class="mx-1"
+                                            type="info"
+                                            effect="plain"
+                                            size="small"
+                                            v-if="
+                                                t.timestamp != undefined &&
+                                                t.timestamp != null &&
+                                                t.timestamp.length > 0
+                                            "
+                                        >
+                                            {{ t.timestamp }}
+                                        </el-tag>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="item" v-if="item.lowPrio != undefined && item.lowPrio.length > 0">
+                                <div class="title">低优先级工作</div>
+                                <ul v-for="t in item.lowPrio">
+                                    <li v-html="t"></li>
+                                </ul>
+                            </div>
                         </el-card>
                     </el-timeline-item>
-                    <template v-for="(timeline, index) in item.timeline.slice(1)">
-                        <el-timeline-item :timestamp="timeline.timestamp" placement="top">
-                            <el-card>
-                                <!-- <el-collapse :model-value="['1', '2']"> -->
-                                <el-collapse :model-value="index == 0 ? ['1', '2'] : []">
-                                    <el-collapse-item
-                                        title="本周工作"
-                                        name="1"
+                    <template v-for="(timeline, timelineIndex) in item.timeline.slice(1)">
+                        <el-timeline-item
+                            :timestamp="timeline.timestamp"
+                            placement="top"
+                            @click="showItemArray[itemIndex][timelineIndex] = !showItemArray[itemIndex][timelineIndex]"
+                            class="trogger-timeline"
+                        >
+                            <Transition name="trogger-timeline-card">
+                                <el-card
+                                    v-show="
+                                        timelineIndex == 0
+                                            ? !showItemArray[itemIndex][timelineIndex]
+                                            : showItemArray[itemIndex][timelineIndex]
+                                    "
+                                >
+                                    <div
+                                        class="item"
                                         v-if="timeline.thisweek != undefined && timeline.thisweek.length > 0"
                                     >
+                                        <div class="title">本周工作</div>
                                         <ul v-for="t in timeline.thisweek">
                                             <li>
                                                 <v-html>{{ t }}</v-html>
                                             </li>
                                         </ul>
-                                    </el-collapse-item>
-                                    <el-collapse-item
-                                        title="下周计划"
-                                        name="2"
+                                    </div>
+                                    <div
+                                        class="item"
                                         v-if="timeline.nextweek != undefined && timeline.nextweek.length > 0"
                                     >
+                                        <div class="title">下周计划</div>
                                         <ul v-for="t in timeline.nextweek">
                                             <li>
                                                 <v-html>{{ t }}</v-html>
                                             </li>
                                         </ul>
-                                    </el-collapse-item>
-                                </el-collapse>
-                            </el-card>
+                                    </div>
+                                </el-card>
+                            </Transition>
                         </el-timeline-item>
                     </template>
                 </el-timeline>
@@ -164,6 +181,14 @@ const activename = ref(
     font-size: larger;
     font-weight: bold;
 }
+.item {
+    font-size: larger;
+    margin-bottom: 1em;
+}
+.item > .title {
+    font-size: large;
+    font-weight: bolder;
+}
 :deep(.el-collapse-item .el-collapse-item__header) {
     height: auto !important;
 }
@@ -172,6 +197,19 @@ const activename = ref(
 }
 :deep(.el-tag) {
     margin: 1px 0.5em;
+}
+.trogger-timeline {
+    cursor: pointer;
+}
+/* .trogger-timeline-card */
+.trogger-timeline-card-enter-active,
+.trogger-timeline-card-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.trogger-timeline-card-enter-from,
+.trogger-timeline-card-leave-to {
+    opacity: 0;
 }
 .contianer {
     margin: 2em auto;
