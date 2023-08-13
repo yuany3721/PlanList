@@ -40,9 +40,21 @@ const planItems:OptionItem[] = [
                     milestone: "MHz线宽光源在单光子探测器下直接探测OTDR"
                 },
             ],
-            inprogress: ["EDFA采购"],
+            inprogress: [],
             lowPrio:["高速采集卡咨询采购"],
             timeline: [
+                {
+                    timestamp: "23-08-11",
+                    thisweek: ["EDFA直流光下正常工作，在20kHz重频下无稳定输出",],
+                    nextweek: ["和厂家确定问题"],
+                },
+                {
+                    timestamp: "23-07-28",
+                    thisweek: [
+                        "EDFA到货，测试无出光，上位机软件报错0x2 0x42，已送厂家返修",
+                        "测试对比了3G、6G、8G带宽差分巴伦器件，6G、8G器件输出波形相似，基本符合预期，3G输出异常，通过计算模拟认为可能是3G器件中两个差分端口存在衰减不一致问题"
+                    ],
+                },
                 {
                     timestamp: "23-07-14",
                     thisweek: ["完成5km测试实验，使用Thorlabs EDFA100S无法完成基于功率的相干探测OTDR搭建，使用单光子探测确认了较差空间分辨率下的探测可行性","差分转单端巴伦器件存在问题，初步定位是线圈短路"],
@@ -84,6 +96,31 @@ const planItems:OptionItem[] = [
             lowPrio: ["LD替换超稳光的本地测试","基于示波器的相位估算问题", "超导使用合束器的理论效率计算"],
             timeline: [
                 {
+                    timestamp: "23-08-11",
+                    thisweek: [
+                        "Dwell time 2ms条件下扫频可能出现ALC报错的原因是blanking导致，uninterrupted模式动态范围受限，大约2-3GHz",
+                    ],
+                    nextweek: [
+                        "整理仿真需求和接口文档",
+                        "基于高精度程控电压源和宽带VCO方案",
+                        "询问SMA100B的SMAB-K724是软件激活还是硬件激活"
+                    ],
+                },
+                {
+                    timestamp: "23-07-28",
+                    thisweek: [
+                        "测试了ADF4372，可以输出单频信号，调频功能需要开发",
+                        "测试了中星联华SLFS24A-H微波源，列表模式调制深度（4096个点）不足，无法满足预期",
+                        "基于80GSaps示波器初步完成对微波源性能验证手段，在6.4ms采样范围内>10kHz频率分辨率",
+                        "为R&S SMA100B微波源编写适配扫频文件，在Dwell time最低2ms间隔实现无报错扫频，但输出仍存在问题",
+                    ],
+                    nextweek: [
+                        "整理仿真需求和接口文档",
+                        "探究Dwell time 2ms条件下扫频可能出现ALC报错的原因，解决扫频后半部分输出消失问题",
+                        "基于高精度程控电压源和宽带VCO方案"
+                    ],
+                },
+                {
                     timestamp: "23-07-21",
                     thisweek: [
                         "讨论基于IQ调制的EOM移频方案，确定电子学需求",
@@ -122,6 +159,10 @@ const planItems:OptionItem[] = [
             title: "大语言模型部署与微调",
             progress: [
                 {
+                    timestamp: "23-08-11",
+                    milestone: "基于ChatGLM2、闻达，部署类ChatPDF服务"
+                },
+                {
                     timestamp: "23-07-17",
                     milestone: "基于LXD的GPU开发环境配置"
                 },
@@ -130,10 +171,33 @@ const planItems:OptionItem[] = [
                     milestone: "服务器系统环境配置"
                 },
             ],
-            inprogress: ["服务器报销"],
+            inprogress: [],
             lowPrio: [],
             isLowPrio: true,
             timeline: [
+                {
+                    timestamp: "23-08-11",
+                    thisweek: [
+                        "尝试部署langchain-ChatGLM、闻达、gpt-academic，调通基于闻达和gpt-academic的类ChatPDF功能，对比ChatGLM、ChatGLM2模型性能差异",
+                        "基于ChatGLM2、闻达部署类ChatPDF服务"
+                    ],
+                },
+                {
+                    timestamp: "23-08-04",
+                    thisweek: ["部署langchain-ChatGLM，存在待修改bug"],
+                },
+                {
+                    timestamp: "23-07-28",
+                    thisweek: [
+                        "整理开源LLM和社区项目信息",
+                        "服务器报销"
+                    ],
+                    nextweek: ["部署附带知识库的LLM项目"],
+                },
+                {
+                    timestamp: "23-07-21",
+                    thisweek: ["完成基于LXD的GPU开发环境配置，整理文档","迁移基于校友企业OpenAI API的院内访问共享项目到服务器"],
+                },
                 {
                     timestamp: "23-07-21",
                     thisweek: ["完成基于LXD的GPU开发环境配置，整理文档","迁移基于校友企业OpenAI API的院内访问共享项目到服务器"],
