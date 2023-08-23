@@ -40,9 +40,17 @@ const planItems:OptionItem[] = [
                     milestone: "MHz线宽光源在单光子探测器下直接探测OTDR"
                 },
             ],
-            inprogress: [],
+            inprogress: ["国盾Pcie3.0×4采集卡"],
             lowPrio:["高速采集卡咨询采购"],
             timeline: [
+                {
+                    timestamp: "23-08-25",
+                    thisweek: ["单模EDFA不支持低频，厂家给出最低120kHz，购买500m光纤，完成160kHz重频双EDFA的下测试，使用示波器采数",],
+                    nextweek: [
+                        "写算法解析波形特征",
+                        "尝试使用徐昱师兄基于FPGA的波形模式进行采数"
+                    ],
+                },
                 {
                     timestamp: "23-08-11",
                     thisweek: ["EDFA直流光下正常工作，在20kHz重频下无稳定输出",],
@@ -95,6 +103,35 @@ const planItems:OptionItem[] = [
             inprogress: ["QXNLL刷固件及可拆卸激光器模块","rio激光器采购"],
             lowPrio: ["LD替换超稳光的本地测试","基于示波器的相位估算问题", "超导使用合束器的理论效率计算"],
             timeline: [
+                {
+                    timestamp: "23-08-25",
+                    thisweek: [
+                        "讨论仿真方案",
+                        "使用34470A万用表，测量±1e-5稳定性，跑通上位机控制程序",
+                        "使用ADCMT6166电压源，万用表测得10min单点稳定性±2e-5，调制深度1000",
+                        "使用模拟轨道数据+线性插值模拟采样深度对整体调制频差影响",
+                    ],
+                    nextweek: [
+                        "讨论仿真方案",
+                        "寻找调制深度更高的电压源",
+                        "使用高精度/模拟轨道数据模拟采样深度影响"
+                    ],
+                },
+                {
+                    timestamp: "23-08-18",
+                    thisweek: [
+                        "整理仿真需求和接口文档",
+                        "拿到SMA100B的SMAB-K724的30天试用license",
+                        "采购VCO EV-ADF5079测试板卡",
+                        "使用实际轨道数据+线性插值模拟采样深度对整体调制频差影响，1Sa/s在300kHz内，峰值1.3Mhz",
+                        "讨论DFT杂峰计算问题，结论是不需要深究对数纵坐标下杂峰问题"
+                    ],
+                    nextweek: [
+                        "讨论仿真方案",
+                        "基于高精度程控电压源和宽带VCO方案",
+                        "使用高精度/模拟轨道数据模拟采样深度影响"
+                    ],
+                },
                 {
                     timestamp: "23-08-11",
                     thisweek: [
