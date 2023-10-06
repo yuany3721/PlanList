@@ -44,6 +44,28 @@ const planItems:OptionItem[] = [
             lowPrio:["高速采集卡咨询采购"],
             timeline: [
                 {
+                    timestamp: "23-09-08",
+                    thisweek: [
+                        "实现抑制相干涨落算法，10kHz频谱峰仍然存在",
+                        "发现PZT使用存在问题"
+                    ],
+                    nextweek: [
+                        "解决振动源问题",
+                        "尝试使用徐昱师兄基于FPGA的波形模式进行采数"
+                    ],
+                },
+                {
+                    timestamp: "23-09-01",
+                    thisweek: [
+                        "使用IQ方法解析相位，频谱上存在10kHz高峰，待确认问题",
+                        "调研抑制相干涨落算法",
+                    ],
+                    nextweek: [
+                        "实现相干涨落算法",
+                        "尝试使用徐昱师兄基于FPGA的波形模式进行采数"
+                    ],
+                },
+                {
                     timestamp: "23-08-25",
                     thisweek: ["单模EDFA不支持低频，厂家给出最低120kHz，购买500m光纤，完成160kHz重频双EDFA的下测试，使用示波器采数",],
                     nextweek: [
@@ -100,9 +122,64 @@ const planItems:OptionItem[] = [
                     milestone: "多普勒频移计算",
                 },
             ],
-            inprogress: ["QXNLL刷固件及可拆卸激光器模块","rio激光器采购"],
+            inprogress: ["QXNLL刷固件及可拆卸激光器模块"],
             lowPrio: ["LD替换超稳光的本地测试","基于示波器的相位估算问题", "超导使用合束器的理论效率计算"],
             timeline: [
+                {
+                    timestamp: "23-09-29",
+                    thisweek: [
+                        "VCO结构、热敏电阻到货",
+                        "讨论仿真方案",
+                        "调研电压源、询价2通道约12w一台",
+                        "微波源无输出时间与调制频率无关，无输出时间结束即调制到目标频率"
+                    ],
+                    nextweek: [
+                        "测试RIO激光器",
+                        "VCO相关测试"
+                    ],
+                },
+                {
+                    timestamp: "23-09-15",
+                    thisweek: [
+                        "TEC到货",
+                        "VCO温控结构投产",
+                        "整理不同方案、问题、需求讨论完成",
+                        "中星联华微波源使用外部触发存在70us无输出时间"
+                    ],
+                    nextweek: [
+                        "讨论仿真方案",
+                        "测试RIO激光器",
+                        "确认微波源无输出相关性能",
+                    ],
+                },
+                {
+                    timestamp: "23-09-08",
+                    thisweek: [
+                        "VCO室温环境下10分钟频率漂移100kHz量级",
+                        "RIO激光器跑通上位机指令",
+                        "模拟轨道数据评估调制深度影响，线性插值1秒间隔频率偏差100kHz量级",
+                    ],
+                    nextweek: [
+                        "讨论仿真方案",
+                        "测试RIO激光器",
+                        "VCO温控方案",
+                    ],
+                },
+                {
+                    timestamp: "23-09-01",
+                    thisweek: [
+                        "完善仿真方案，v0.4",
+                        "准备模拟轨道数据",
+                        "RIO激光器已到货",
+                        "VCO到货",
+                    ],
+                    nextweek: [
+                        "讨论仿真方案",
+                        "测试VCO",
+                        "测试RIO激光器",
+                        "使用高精度/模拟轨道数据模拟采样深度影响"
+                    ],
+                },
                 {
                     timestamp: "23-08-25",
                     thisweek: [
@@ -196,6 +273,10 @@ const planItems:OptionItem[] = [
             title: "大语言模型部署与微调",
             progress: [
                 {
+                    timestamp: "23-09-30",
+                    milestone: "基于ChatGLM2、FastGPT部署本地知识库项目"
+                },
+                {
                     timestamp: "23-08-11",
                     milestone: "基于ChatGLM2、闻达，部署类ChatPDF服务"
                 },
@@ -212,6 +293,12 @@ const planItems:OptionItem[] = [
             lowPrio: [],
             isLowPrio: true,
             timeline: [
+                {
+                    timestamp: "23-09-29",
+                    thisweek: [
+                        "基于ChatGLM2、FastGPT部署本地知识库项目，使用MongoDB作为后端数据库，使用Hugo编写相关使用文档",
+                    ],
+                },
                 {
                     timestamp: "23-08-11",
                     thisweek: [
