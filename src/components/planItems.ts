@@ -44,9 +44,43 @@ const planItems:OptionItem[] = [
                     milestone: "MHz线宽光源在单光子探测器下直接探测OTDR"
                 },
             ],
-            inprogress: ["国盾Pcie3.0×4采集卡"],
+            inprogress: ["光纤拉伸器、高速采集卡"],
             lowPrio:["IQ解调算法复现bug修改","系统信噪比计算"],
             timeline: [
+                {
+                    timestamp: "23-12-01",
+                    thisweek: [
+                        "询低占空比EDFA",
+                        "重算PD探测功率需求，怀疑之前看不到10uw级别光可能原因是低频截止和local光过强原因，更换PD"
+                    ],
+                    nextweek: [
+                        "解决传感距离问题",
+                        "量化扰动大小",
+                        "使用更换后PD进行实验",
+                    ],
+                },
+                {
+                    timestamp: "23-11-24",
+                    thisweek: [
+                        "整理后续工作思路，讨论",
+                    ],
+                    nextweek: [
+                        "解决传感距离问题",
+                        "量化扰动大小",
+                        "沟通低占空比EDFA"
+                    ],
+                },
+                {
+                    timestamp: "23-11-17",
+                    thisweek: [
+                        "采购光纤拉伸器、高速采集卡",
+                    ],
+                    nextweek: [
+                        "解决传感距离问题",
+                        "量化扰动大小",
+                        "沟通低占空比EDFA"
+                    ],
+                },
                 {
                     timestamp: "23-11-10",
                     thisweek: [
@@ -183,6 +217,25 @@ const planItems:OptionItem[] = [
             inprogress: ["QXNLL刷固件及可拆卸激光器模块"],
             lowPrio: ["LD替换超稳光的本地测试","基于示波器的相位估算问题", "超导使用合束器的理论效率计算"],
             timeline: [
+                {
+                    timestamp: "23-12-01",
+                    thisweek: [
+                        "DA板指令响应200ns@20mV，驱动VCO展宽1MHz，VDD、VSS变化会影响输出，待排查问题",
+                    ],
+                    nextweek: [
+                        "排查DA板问题，使用稳压参考源芯片提供参考电压",
+                    ],
+                },
+                {
+                    timestamp: "23-11-24",
+                    thisweek: [
+                        "半导体所新激光器使用ITC4001测试稳定性",
+                        "DA板设置DAC寄存器指令初步调通"
+                    ],
+                    nextweek: [
+                        "DA板整合VCO测试",
+                    ],
+                },
                 {
                     timestamp: "23-11-10",
                     thisweek: [
