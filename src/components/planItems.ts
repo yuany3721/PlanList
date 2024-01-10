@@ -24,6 +24,14 @@ const planItems:OptionItem[] = [
             title: "光纤传感",
             progress: [
                 {
+                    timestamp: "24-01-10",
+                    milestone: "在10.5km传感距离、10m空间分辨率下完成系统性能量化测试"
+                },
+                {
+                    timestamp: "23-12-06",
+                    milestone: "完成5.5km传感距离下10m空间分辨率的光纤传感，可以扩展至20km，50km则衰减明显，信噪比可能存在问题"
+                },
+                {
                     timestamp: "23-10-27",
                     milestone: "完成500m传感距离下10m空间分辨率基于相干探测和平衡探测的光纤传感"
                 },
@@ -44,9 +52,66 @@ const planItems:OptionItem[] = [
                     milestone: "MHz线宽光源在单光子探测器下直接探测OTDR"
                 },
             ],
-            inprogress: ["光纤拉伸器、高速采集卡"],
-            lowPrio:["IQ解调算法复现bug修改","系统信噪比计算"],
+            inprogress: ["拉曼放大器"],
+            lowPrio:["IQ解调算法复现bug修改"],
             timeline: [
+                {
+                    timestamp: "24-01-12",
+                    thisweek: [
+                        "完成10.5km传感距离下系统性能量化，信噪比低，噪声水平正常",
+                        "采集卡到货"
+                    ],
+                    nextweek: [
+                        "继续整理实验方案",
+                        "配置并使用采集卡"
+                    ],
+                },
+                {
+                    timestamp: "24-01-05",
+                    thisweek: [
+                        "怀疑可能是应变不够大，采购20Vpp信号发生器",
+                        "整理实验方案"
+                    ],
+                    nextweek: [
+                        "量化扰动大小",
+                        "继续整理实验方案",
+                        "排查PZT问题"
+                    ],
+                },
+                {
+                    timestamp: "23-12-29",
+                    thisweek: [
+                        "拉曼放大器提交采购",
+                        "光纤拉伸器到货，用拍频方式可以正常使用",
+                        "光纤拉伸器接入10.5km传感测试光纤，使用之前算法无法观察到弧度变化，待排查问题"
+                    ],
+                    nextweek: [
+                        "量化扰动大小",
+                        "考虑实验方案",
+                        "排查PZT问题"
+                    ],
+                },
+                {
+                    timestamp: "23-12-15",
+                    thisweek: [
+                        "采购大量程采集卡、拉曼放大器",
+                    ],
+                    nextweek: [
+                        "量化扰动大小",
+                        "考虑实验方案"
+                    ],
+                },
+                {
+                    timestamp: "23-12-08",
+                    thisweek: [
+                        "更换PD后可以看到10uw背向散射信号",
+                        "修改光路将EDFA置于AOM后，完成5.5km的相干探测，该结果可扩展至20km，50km则衰减明显，信噪比可能存在问题"
+                    ],
+                    nextweek: [
+                        "量化扰动大小",
+                        "考虑实验方案"
+                    ],
+                },
                 {
                     timestamp: "23-12-01",
                     thisweek: [
@@ -198,8 +263,12 @@ const planItems:OptionItem[] = [
             title: "星地TF-QKD地面验证实验",
             progress: [
                 {
+                    timestamp: "2023-09-06",
+                    milestone: "确定使用VCO+EOM移频方案",
+                },
+                {
                     timestamp: "2023-07-17",
-                    milestone: "转向基于EOM的调频方案",
+                    milestone: "转向基于EOM的移频方案",
                 },
                 {
                     timestamp: "2023-03",
@@ -214,9 +283,85 @@ const planItems:OptionItem[] = [
                     milestone: "多普勒频移计算",
                 },
             ],
-            inprogress: ["QXNLL刷固件及可拆卸激光器模块"],
-            lowPrio: ["LD替换超稳光的本地测试","基于示波器的相位估算问题", "超导使用合束器的理论效率计算"],
+            inprogress: [],
+            lowPrio: [
+                "调研、讨论LD频率锁定方案",
+                "LD替换超稳光的本地测试",
+                "基于示波器的相位估算问题",
+                "超导使用合束器的理论效率计算",
+            ],
             timeline: [
+                {
+                    timestamp: "24-01-12",
+                    thisweek: [
+                        "重新组装VCO结构，展宽劣化到约MHz",
+                        "整理TF-QKD实验参数和相位计算关系",
+                        "整理载荷文档"
+                    ],
+                    nextweek: [
+                        "使用稳压参考源芯片提供参考电压",
+                        "排查VCO展宽劣化问题",
+                        "补充讨论后文档缺漏",
+                    ],
+                },
+                {
+                    timestamp: "24-01-05",
+                    thisweek: [
+                        "测试中VCO热敏电阻损坏，购买硅脂重新安装VCO",
+                    ],
+                    nextweek: [
+                        "使用稳压参考源芯片提供参考电压",
+                        "排查VCO展宽劣化问题",
+                        "补充讨论后文档缺漏",
+                        "修VCO"
+                    ],
+                },
+                {
+                    timestamp: "23-12-29",
+                    thisweek: [
+                        "整理当前移频相关工作进展，讨论工作内容",
+                    ],
+                    nextweek: [
+                        "使用稳压参考源芯片提供参考电压",
+                        "排查VCO展宽劣化问题",
+                        "补充讨论后文档缺漏"
+                    ],
+                },
+                {
+                    timestamp: "23-12-22",
+                    thisweek: [
+                        "梳理激光频率稳定性指标，对前期测试数据重新处理，半导体激光器直接驱动10h长漂10M量级、10min短漂M量级",
+                        "测试VCO+DA板输出频率稳定性10h长漂M量级、10min短漂100k量级，DA板+VCO双点重复性完成测试、数据待处理",
+                    ],
+                    nextweek: [
+                        "使用稳压参考源芯片提供参考 电压",
+                        "排查VCO展宽劣化问题",
+                    ],
+                },
+                {
+                    timestamp: "23-12-15",
+                    thisweek: [
+                        "测试VCO+DA板输出频率稳定性，3天时间单方向连续漂移2MHz",
+                        "VCO+DA板迁移到109后展宽劣化至约500kHz",
+                        "补充LD频率稳定性测试，4001驱动+4001温控、半导体激光器、10小时量级长漂12MHz"
+                    ],
+                    nextweek: [
+                        "使用稳压参考源芯片提供参考 电压",
+                        "测试VCO稳定性",
+                        "排查VCO展宽劣化问题",
+                        "整理稳定性测试报告"
+                    ],
+                },
+                {
+                    timestamp: "23-12-08",
+                    thisweek: [
+                        "DA板原装参考电压子板固定5V参考，拆下子板，另外提供参考电压后恢复正常",
+                        "VCO+DA板展宽约300kHz"
+                    ],
+                    nextweek: [
+                        "使用稳压参考源芯片提供参考电压",
+                    ],
+                },
                 {
                     timestamp: "23-12-01",
                     thisweek: [
@@ -508,6 +653,15 @@ const planItems:OptionItem[] = [
             title: "其他",
             inprogress: [],
             timeline: [
+                {
+                    timestamp: "23-12-29",
+                    thisweek: ["拍频测试方案测试，30pm约4GHz，需8GHz大带宽PD，初步测试得到结果，但无1540稳频参考光，放弃此方案"]
+                },
+                {
+                    timestamp: "23-12-22",
+                    thisweek: ["超稳光验证中高轨光电板线宽拍频测试方案，10nw的MHz展宽激光器证明可行性"],
+                    nextweek:["继续进行测试"]
+                },
                 {
                     timestamp: "23-07-07",
                     thisweek:["从Endnote迁移文献至Zotero，配置<a href='https://zotero.yuany3721.site/zotero/'>WebDav服务器同步<a/>"]
