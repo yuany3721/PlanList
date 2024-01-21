@@ -52,9 +52,21 @@ const planItems:OptionItem[] = [
                     milestone: "MHz线宽光源在单光子探测器下直接探测OTDR"
                 },
             ],
-            inprogress: ["拉曼放大器"],
+            inprogress: [],
             lowPrio:["IQ解调算法复现bug修改"],
             timeline: [
+                {
+                    timestamp: "24-01-19",
+                    thisweek: [
+                        "配置采集卡配套测试机环境",
+                        "拉曼放大器到货"
+                    ],
+                    nextweek: [
+                        "继续整理实验方案",
+                        "使用拉曼放大器",
+                        "配置并使用采集卡"
+                    ],
+                },
                 {
                     timestamp: "24-01-12",
                     thisweek: [
@@ -263,6 +275,10 @@ const planItems:OptionItem[] = [
             title: "星地TF-QKD地面验证实验",
             progress: [
                 {
+                    timestamp: "2024-01-18",
+                    milestone: "完成相位噪声、实验参数、相位误码关系整理",
+                },
+                {
                     timestamp: "2023-09-06",
                     milestone: "确定使用VCO+EOM移频方案",
                 },
@@ -289,8 +305,25 @@ const planItems:OptionItem[] = [
                 "LD替换超稳光的本地测试",
                 "基于示波器的相位估算问题",
                 "超导使用合束器的理论效率计算",
+                "使用稳压参考源芯片提供参考电压",
             ],
             timeline: [
+                {
+                    timestamp: "24-01-19",
+                    thisweek: [
+                        "整理实验参数要求，厘清相噪和相位误差关系，整理相关文档",
+                        "测试NKT激光器，相噪水平低于RIO、半导体所激光器，高于超稳光",
+                        "修改单片机供电方式，添加低通滤波器，解决VCO展宽劣化问题，当前展宽20~50kHz",
+                        "重测VCO、各激光器相噪，整理实验结果"
+                    ],
+                    nextweek: [
+                        "补充讨论后文档缺漏",
+                        "讨论模拟仿真接口文档",
+                        "整理载荷设计文档",
+                        "迁移移频曲线算法至单片机",
+                        "买NKT激光器、DA板运放"
+                    ],
+                },
                 {
                     timestamp: "24-01-12",
                     thisweek: [
